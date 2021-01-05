@@ -19,4 +19,18 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+
 Route.post('/users', 'UserController.create')
+Route.post('/sessions', 'SessionController.create')
+
+Route.resource('/roles', 'RoleController')
+  .apiOnly()
+  .middleware('auth')
+
+Route.resource('/permissions', 'PermissionController')
+  .apiOnly()
+  .middleware('auth')
+
+Route.resource('/roles_permissions', 'RolesPermissionController')
+  .apiOnly()
+  .middleware('auth')
