@@ -1,5 +1,6 @@
 'use strict'
 
+const User = use("App/Models/User")
 const RolesPermission = use("App/Models/RolesPermission")
 const Role = use("App/Models/Role")
 const Permission = use("App/Models/Permission")
@@ -23,12 +24,12 @@ class RolesPermissionSeeder {
       name: 'Subscriber',
       description: 'Inscrito do blog'
     })
-
+    
     await Role.create({
       name: 'Admin',
       description: 'Admin do blog'
     })
-
+    
     await Permission.create({
       name: 'Criar Post',
       description: 'Pode criar publicacoes'
@@ -38,7 +39,7 @@ class RolesPermissionSeeder {
       name: 'Criar Comentarios',
       description: 'Pode criar comentarios'
     })
-
+    
     await RolesPermission.create({
       role_id: 1,
       permission_id: 2,
@@ -47,6 +48,24 @@ class RolesPermissionSeeder {
     await RolesPermission.create({
       role_id: 2,
       permission_id: 1,
+    })
+    await User.create({
+      username: 'Guilherme Lucas',
+      email: 'guilherme.evandf@gmail.com',
+      password: '12345',
+      role_id: 2
+    })
+    await User.create({
+      username: 'Mateus Pires',
+      email: 'mateuspires@gmail.com',
+      password: '12345',
+      role_id: 1
+    })
+    await User.create({
+      username: 'Davi Zao',
+      email: 'davizao@gmail.com',
+      password: '12345',
+      role_id: 1
     })
     
     await RolesPermission.create({
