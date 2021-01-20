@@ -9,12 +9,12 @@ class AdminOnly {
    * @param {Function} next
    */
   
-  async handle ({ auth }, next) {
+  async handle ({ auth, response }, next) {
     const { HttpException } = use('@adonisjs/generic-exceptions')
     if(auth.user.role_id === 2)
       await next()
     else
-      throw new HttpException('Unauthorized', 401)
+      return response.unauthorized('Admin permissions required')
   }
 }
 

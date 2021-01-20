@@ -34,3 +34,17 @@ Route.resource('/permissions', 'PermissionController')
 Route.resource('/roles_permissions', 'RolesPermissionController')
   .apiOnly()
   .middleware('auth')
+
+Route.resource('/posts', 'PostController')
+  .apiOnly()
+  .middleware('auth')
+
+Route.post('posts/:id/images', 'ImageController.store')
+  .middleware('auth')
+
+Route.get('images/:path', 'ImageController.show')
+  .middleware('auth', 'hasPermission:3')
+
+Route.resource('/comments', 'CommentController')
+  .apiOnly()
+  .middleware('auth')

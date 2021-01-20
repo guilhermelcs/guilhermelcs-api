@@ -5,11 +5,15 @@ const Model = use('Model')
 
 class Post extends Model {
     users() {
-        this.hasOne('App/Models/User')
+        return this.hasOne('App/Models/User')
     }
     
     comments() {
-        this.hasMany('App/Models/Comment')
+        return this.hasMany('App/Models/Comment')
+    }
+    
+    images() {
+        return this.hasMany('App/Models/Image')
     }
 }
 
