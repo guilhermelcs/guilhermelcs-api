@@ -19,4 +19,43 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+
 Route.post('/users', 'UserController.create')
+Route.post('/sessions', 'SessionController.create')
+
+Route.resource('/roles', 'RoleController')
+  .apiOnly()
+  .middleware('auth')
+
+Route.resource('/permissions', 'PermissionController')
+  .apiOnly()
+  .middleware('auth')
+
+Route.resource('/roles_permissions', 'RolesPermissionController')
+  .apiOnly()
+  .middleware('auth')
+
+Route.post('/posts', 'PostController.store')
+  .middleware('auth', 'hasPermission:1')
+
+Route.patch('/posts/:id', 'PostController.update')
+  .middleware('auth', 'hasPermission:2')
+
+Route.delete('/posts/:id', 'PostController.destroy')
+  .middleware('auth', 'hasPermission:3')
+
+Route.get('/posts/:id', 'PostController.show')
+  .middleware('auth', 'hasPermission:4')
+
+Route.get('/posts', 'PostController.index')
+  .middleware('auth', 'hasPermission:5')
+
+Route.post('posts/:id/images', 'ImageController.store')
+  .middleware('auth')
+
+Route.get('images/:path', 'ImageController.show')
+  .middleware('auth', 'hasPermission:3')
+
+Route.resource('/comments', 'CommentController')
+  .apiOnly()
+  .middleware('auth')
