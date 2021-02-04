@@ -35,9 +35,20 @@ Route.resource('/roles_permissions', 'RolesPermissionController')
   .apiOnly()
   .middleware('auth')
 
-Route.resource('/posts', 'PostController')
-  .apiOnly()
-  .middleware('auth')
+Route.post('/posts', 'PostController.store')
+  .middleware('auth', 'hasPermission:1')
+
+Route.patch('/posts/:id', 'PostController.update')
+  .middleware('auth', 'hasPermission:2')
+
+Route.delete('/posts/:id', 'PostController.destroy')
+  .middleware('auth', 'hasPermission:3')
+
+Route.get('/posts/:id', 'PostController.show')
+  .middleware('auth', 'hasPermission:4')
+
+Route.get('/posts', 'PostController.index')
+  .middleware('auth', 'hasPermission:5')
 
 Route.post('posts/:id/images', 'ImageController.store')
   .middleware('auth')
