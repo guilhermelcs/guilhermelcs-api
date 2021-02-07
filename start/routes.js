@@ -47,7 +47,6 @@ Route.delete('/posts/:id', 'PostController.destroy')
 Route.get('/posts/:id', 'PostController.show')
 
 Route.get('/posts', 'PostController.index')
-  .middleware('auth', 'hasPermission:5')
 
 Route.post('posts/:id/images', 'ImageController.store')
   .middleware('auth')
