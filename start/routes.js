@@ -45,7 +45,6 @@ Route.delete('/posts/:id', 'PostController.destroy')
   .middleware('auth', 'hasPermission:3')
 
 Route.get('/posts/:id', 'PostController.show')
-  .middleware('auth', 'hasPermission:4')
 
 Route.get('/posts', 'PostController.index')
   .middleware('auth', 'hasPermission:5')

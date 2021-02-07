@@ -102,10 +102,6 @@ class RolesPermissionSeeder {
 		})
 		await RolesPermission.create({
 			role_id: 1,
-			permission_id: 4,
-		})
-		await RolesPermission.create({
-			role_id: 1,
 			permission_id: 5,
 		})
 		await RolesPermission.create({
