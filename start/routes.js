@@ -49,7 +49,6 @@ Route.get('/posts/:id', 'PostController.show')
 Route.get('/posts', 'PostController.index')
 
 Route.post('posts/:id/images', 'ImageController.store')
-  .middleware('auth')
 
 Route.get('images/:path', 'ImageController.show')
   .middleware('auth', 'hasPermission:3')
